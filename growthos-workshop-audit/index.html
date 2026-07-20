@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Promise-delivery audit of the July 16 GrowthOS workshop.">
+  <title>GrowthOS Workshop — Promise-Delivery Audit</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #1d2421;
+      --muted: #64706a;
+      --paper: #f5f4ef;
+      --surface: #ffffff;
+      --line: #d9ddd8;
+      --accent: #196447;
+      --accent-soft: #deeee6;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.55;
+    }
+    main {
+      width: min(980px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 56px 0 72px;
+    }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 {
+      max-width: 800px;
+      margin-bottom: 12px;
+      font-size: clamp(2.2rem, 6vw, 4.6rem);
+      line-height: .98;
+      letter-spacing: -.055em;
+    }
+    h2 {
+      margin-bottom: 18px;
+      font-size: 1.55rem;
+      letter-spacing: -.025em;
+    }
+    h3 {
+      margin-bottom: 0;
+      font-size: 1.02rem;
+      line-height: 1.35;
+    }
+    .eyebrow {
+      margin-bottom: 14px;
+      color: var(--accent);
+      font-size: .75rem;
+      font-weight: 750;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    .subhead {
+      max-width: 680px;
+      color: var(--muted);
+      font-size: 1.08rem;
+    }
+    .score-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin: 36px 0 18px;
+    }
+    .score-card {
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--surface);
+    }
+    .score {
+      margin-bottom: 2px;
+      font-size: 2rem;
+      font-weight: 780;
+      letter-spacing: -.04em;
+    }
+    .score.primary { color: var(--accent); }
+    .score-label {
+      color: var(--muted);
+      font-size: .82rem;
+    }
+    .summary {
+      margin-bottom: 48px;
+      padding: 18px 20px;
+      border-left: 4px solid var(--accent);
+      background: var(--accent-soft);
+      font-size: 1.02rem;
+    }
+    .finding {
+      padding: 22px 0;
+      border-top: 1px solid var(--line);
+    }
+    .finding:last-child { border-bottom: 1px solid var(--line); }
+    .finding-head {
+      display: grid;
+      grid-template-columns: 34px minmax(0, 1fr) auto;
+      gap: 12px;
+      align-items: start;
+      margin-bottom: 12px;
+    }
+    .number {
+      color: var(--muted);
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+    }
+    .rating {
+      min-width: 62px;
+      text-align: right;
+      font-size: 1.12rem;
+      font-weight: 780;
+    }
+    .bar {
+      height: 5px;
+      margin: 10px 0 0 46px;
+      overflow: hidden;
+      border-radius: 99px;
+      background: var(--line);
+    }
+    .bar span {
+      display: block;
+      height: 100%;
+      border-radius: inherit;
+      background: var(--accent);
+    }
+    .finding-copy {
+      margin: 14px 0 0 46px;
+      color: #343d39;
+    }
+    .gap {
+      margin: 10px 0 0 46px;
+      color: var(--muted);
+      font-size: .92rem;
+    }
+    .columns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 36px;
+      margin: 50px 0;
+    }
+    ul { margin: 0; padding-left: 20px; }
+    li + li { margin-top: 9px; }
+    .bottom-line {
+      padding: 26px;
+      border-radius: 12px;
+      background: var(--ink);
+      color: white;
+    }
+    .bottom-line h2 { margin-bottom: 10px; }
+    .bottom-line p { margin-bottom: 0; color: #e1e6e3; }
+    footer {
+      margin-top: 24px;
+      color: var(--muted);
+      font-size: .78rem;
+    }
+    a { color: var(--accent); }
+    @media (max-width: 680px) {
+      main { padding-top: 36px; }
+      .score-grid, .columns { grid-template-columns: 1fr; }
+      .columns { gap: 28px; }
+      .finding-head { grid-template-columns: 28px minmax(0, 1fr) auto; }
+      .bar, .finding-copy, .gap { margin-left: 40px; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <p class="eyebrow">Promise–delivery audit</p>
+      <h1>Strong methodology. Weaker workshop mechanics.</h1>
+      <p class="subhead">An assessment of the July 16 GrowthOS workshop page against the 108-minute event transcript.</p>
+    </header>
+
+    <section class="score-grid" aria-label="Headline scores">
+      <article class="score-card">
+        <div class="score primary">7/10</div>
+        <div class="score-label">Overall promise delivery</div>
+      </article>
+      <article class="score-card">
+        <div class="score">10/10</div>
+        <div class="score-label">Context Engineering</div>
+      </article>
+      <article class="score-card">
+        <div class="score">4/10</div>
+        <div class="score-label">Hands-on working session</div>
+      </article>
+    </section>
+
+    <p class="summary"><strong>The content promise was largely met:</strong> attendees received a coherent end-to-end methodology. <strong>The experience promise was only partly met:</strong> the event behaved like a masterclass rather than a two-hour working session.</p>
+
+    <section>
+      <h2>Promise-by-promise assessment</h2>
+
+      <article class="finding">
+        <div class="finding-head"><span class="number">01</span><h3>Explain why growth programs fail to compound</h3><span class="rating">9/10</span></div>
+        <div class="bar"><span style="width:90%"></span></div>
+        <p class="finding-copy">The opening established diminishing versus compounding channels, the website as the truth layer, and the missing feedback loop. The same logic returned throughout measurement, execution, and optimization.</p>
+      </article>
+
+      <article class="finding">
+        <div class="finding-head"><span class="number">02</span><h3>Teach the Context Engineering framework</h3><span class="rating">10/10</span></div>
+        <div class="bar"><span style="width:100%"></span></div>
+        <p class="finding-copy">This was the strongest section: company, brand, product, market, audience, sources, web presence, study guides, sequential research waves, and context dependencies were covered in depth.</p>
+      </article>
+
+      <article class="finding">
+        <div class="finding-head"><span class="number">03</span><h3>Turn context into buyer questions and cluster strategy</h3><span class="rating">8/10</span></div>
+        <div class="bar"><span style="width:80%"></span></div>
+        <p class="finding-copy">The workshop connected ICPs, personas, jobs to be done, buyer stages, questions, prompts, pages, opportunities, and strategic clusters.</p>
+        <p class="gap"><strong>Gap:</strong> Attendees did not build their own cluster or leave with a completed working artifact.</p>
+      </article>
+
+      <article class="finding">
+        <div class="finding-head"><span class="number">04</span><h3>Show measurement across AI and search</h3><span class="rating">9/10</span></div>
+        <div class="bar"><span style="width:90%"></span></div>
+        <p class="finding-copy">The session gave a substantive framework for presence, reputation, alignment, and influence, then tied pages to keywords, prompts, citations, traffic, engagement, and conversion.</p>
+      </article>
+
+      <article class="finding">
+        <div class="finding-head"><span class="number">05</span><h3>Show execution patterns that prevent content slop</h3><span class="rating">5/10</span></div>
+        <div class="bar"><span style="width:50%"></span></div>
+        <p class="finding-copy">Marcel covered briefs, deep research, source quality, planning, post-processing, attribution, expert review, saved feedback, brand alignment, and continuous optimization.</p>
+        <p class="gap"><strong>Gap:</strong> This section was explicitly skimmed and deferred to another workshop. Attendees received an overview rather than a repeatable diagnostic.</p>
+      </article>
+
+      <article class="finding">
+        <div class="finding-head"><span class="number">06</span><h3>Explain and close the compounding loop</h3><span class="rating">8/10</span></div>
+        <div class="bar"><span style="width:80%"></span></div>
+        <p class="finding-copy">The session connected context → strategy → pages → indexing → visibility → traffic → engagement → conversion, then added retargeting, offers, warm outbound, and subscribers.</p>
+        <p class="gap"><strong>Gap:</strong> Pipeline and renewal were named in the event copy but were not materially unpacked during the session.</p>
+      </article>
+
+      <article class="finding">
+        <div class="finding-head"><span class="number">07</span><h3>Run a live two-hour working session</h3><span class="rating">4/10</span></div>
+        <div class="bar"><span style="width:40%"></span></div>
+        <p class="finding-copy">The event delivered roughly 85 minutes of instruction followed by about 10 minutes of Q&amp;A, using a mind map and live GrowthOS views.</p>
+        <p class="gap"><strong>Gap:</strong> There were no attendee exercises, worksheets, individual diagnoses, or hands-on builds. This is the largest format mismatch.</p>
+      </article>
+
+      <article class="finding">
+        <div class="finding-head"><span class="number">08</span><h3>Ground the methodology in named customer results</h3><span class="rating">4/10</span></div>
+        <div class="bar"><span style="width:40%"></span></div>
+        <p class="finding-copy">Ramp, Brex, Vercel, Webflow, and other brands appeared as examples, with Vercel used repeatedly to illustrate segmentation and ecosystem mapping.</p>
+        <p class="gap"><strong>Gap:</strong> The promised Ramp/Lovable/Vercel system and Augment Code result were references rather than substantive case studies.</p>
+      </article>
+    </section>
+
+    <section class="columns">
+      <div>
+        <h2>What it genuinely delivered</h2>
+        <ul>
+          <li>A clear theory of compounding growth centered on the website</li>
+          <li>A detailed context ontology and research sequence</li>
+          <li>A buyer-question-to-page-to-cluster strategy model</li>
+          <li>A nuanced AI visibility measurement framework</li>
+          <li>A coherent closed-loop operating model</li>
+        </ul>
+      </div>
+      <div>
+        <h2>Where the page overpromised</h2>
+        <ul>
+          <li>“Working session” implied hands-on participation</li>
+          <li>“Two-hour” overstated the instructional duration</li>
+          <li>Content-quality patterns received a fast overview</li>
+          <li>Named customer outcomes were references, not case studies</li>
+          <li>Pipeline and renewal lacked comparable depth</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="bottom-line">
+      <h2>Bottom line</h2>
+      <p>Attendees who came to understand the GrowthOS methodology likely felt the event delivered. Attendees expecting to diagnose their own program, build a context layer or cluster, and leave with a completed artifact likely felt the gap.</p>
+    </section>
+
+    <footer>
+      Source: <a href="https://luma.com/growthos-ai-workshop-2026">GrowthOS workshop event page</a> and the event transcript.
+    </footer>
+  </main>
+</body>
+</html>
